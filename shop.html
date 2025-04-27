@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dino Run - Shop</title>
-
   <style>
     body, html {
       margin: 0;
@@ -53,6 +52,10 @@
 <button onclick="backHome()">Kembali ke Home</button>
 
 <script>
+  if (localStorage.getItem('skins') === null) {
+    localStorage.setItem('skins', JSON.stringify(['Default']));
+  }
+
   function updateHighscoreDisplay() {
     let highscore = parseInt(localStorage.getItem('highscore')) || 0;
     document.getElementById('highscoreDisplay').innerText = "Highscore: " + highscore;
