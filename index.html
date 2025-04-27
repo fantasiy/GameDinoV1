@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dino Run - Home</title>
-
   <style>
     body, html {
       margin: 0;
@@ -28,22 +27,29 @@
 </head>
 <body>
 
-<h1>Selamat Datang di Dino Run!</h1>
+<h1>Dino Run - Home</h1>
 
-<button onclick="startEasy()">Main Easy Mode</button>
-<button onclick="startHard()">Main Hard Mode</button>
-<button onclick="gotoShop()">Beli Skin</button>
+<button onclick="goEasy()">Easy Mode</button>
+<button onclick="goHard()">Hard Mode</button>
+<button onclick="goShop()">Shop</button>
 
 <script>
-  function startEasy() {
+  if (localStorage.getItem('skins') === null) {
+    localStorage.setItem('skins', JSON.stringify(['Default']));
+  }
+  if (localStorage.getItem('highscore') === null) {
+    localStorage.setItem('highscore', 5000);
+  }
+
+  function goEasy() {
     window.location.href = 'easy.html';
   }
 
-  function startHard() {
+  function goHard() {
     window.location.href = 'hard.html';
   }
 
-  function gotoShop() {
+  function goShop() {
     window.location.href = 'shop.html';
   }
 </script>
