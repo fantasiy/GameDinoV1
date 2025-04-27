@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dino Run - Easy Mode</title>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      text-align: center;
+    }
+    button {
+      background: lime;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Easy Mode - Dino Run</h1>
+<p id="highscoreDisplay">Highscore: 0</p>
+
+<p>Pilih Skin Karakter:</p>
+
+<div id="skinContainer"></div>
+
+<p id="gameArea">Game dimulai dengan skin default...</p>
+
+<br>
+<button onclick="backHome()">Kembali ke Home</button>
+
+<script>
+  function updateHighscoreDisplay() {
+    let highscore = parseInt(localStorage.getItem('highscore')) || 0;
+    document.getElementById('highscoreDisplay').innerText = "Highscore: " + highscore;
+  }
+
+  function loadSkins() {
+    let skins = JSON.parse(localStorage.getItem('skins')) || [];
+    const container = document.getElementById('skinContainer');
+    container.innerHTML = '';
+
+    if (skins.length === 0) {
+      container.innerHTML = '<p>Tidak ada skin yang dimiliki.</p>';
+      return;
+    }
+
+    skins.forEach(color => {
+      const btn = document.createElement('button');
+      btn.innerText = color;
+      btn.onclick = function() {
+        startGame(color);
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  function startGame(skin) {
+    document.getElementById('gameArea').innerText = `Game dimulai dengan skin ${skin}!`;
+    console.log("Game start dengan skin: " + skin);
+
+    let tambahSkor = setInterval(() => {
+      let currentScore = parseInt(localStorage.getItem('highscore')) || 0;
+      currentScore += 10;
+      localStorage.setItem('highscore', currentScore);
+      updateHighscoreDisplay();
+    }, 1000);
+  }
+
+  function backHome() {
+    window.location.href = 'index.html';
+  }
+
+  updateHighscoreDisplay();
+  loadSkins();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dino Run - Shop</title>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      text-align: center;
+    }
+    .skin {
+      margin: 20px;
+    }
+    button {
+      background: lime;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Shop - Beli Skin</h1>
+
+<p id="highscoreDisplay">Highscore: 0</p>
+
+<div class="skin">
+  <p>Skin Merah - 3000 skor</p>
+  <button onclick="buySkin('Merah', 3000)">Beli</button>
+</div>
+
+<div class="skin">
+  <p>Skin Biru - 4000 skor</p>
+  <button onclick="buySkin('Biru', 4000)">Beli</button>
+</div>
+
+<div class="skin">
+  <p>Skin Hijau - 5000 skor</p>
+  <button onclick="buySkin('Hijau', 5000)">Beli</button>
+</div>
+
+<br>
+<button onclick="backHome()">Kembali ke Home</button>
+
+<script>
+  function updateHighscoreDisplay() {
+    let highscore = parseInt(localStorage.getItem('highscore')) || 0;
+    document.getElementById('highscoreDisplay').innerText = "Highscore: " + highscore;
+  }
+
+  function buySkin(color, price) {
+    let highscore = parseInt(localStorage.getItem('highscore')) || 0;
+    let skins = JSON.parse(localStorage.getItem('skins')) || [];
+
+    if (skins.includes(color)) {
+      alert('Kamu sudah memiliki skin ' + color + '!');
+      return;
+    }
+
+    if (highscore >= price) {
+      highscore -= price;
+      skins.push(color);
+      localStorage.setItem('highscore', highscore);
+      localStorage.setItem('skins', JSON.stringify(skins));
+      alert('Berhasil membeli skin ' + color + '!');
+      updateHighscoreDisplay();
+    } else {
+      alert('Highscore kamu kurang untuk beli skin ini!');
+    }
+  }
+
+  function backHome() {
+    window.location.href = 'index.html';
+  }
+
+  updateHighscoreDisplay();
+</script>
+
+</body>
+</html>
