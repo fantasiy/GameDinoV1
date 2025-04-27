@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dino Run - Home</title>
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: lime;
+      font-family: monospace;
+      text-align: center;
+    }
+    button {
+      background: lime;
+      color: black;
+      border: none;
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Selamat Datang di Dino Run!</h1>
+
+<button onclick="startEasy()">Main Easy Mode</button>
+<button onclick="startHard()">Main Hard Mode</button>
+<button onclick="gotoShop()">Beli Skin</button>
+
+<script>
+  function startEasy() {
+    window.location.href = 'easy.html';
+  }
+
+  function startHard() {
+    window.location.href = 'hard.html';
+  }
+
+  function gotoShop() {
+    window.location.href = 'shop.html';
+  }
+</script>
+
+</body>
+</html>
